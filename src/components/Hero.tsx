@@ -58,6 +58,28 @@ export default function Hero() {
         }}
       />
 
+      {/* Large logo watermark — geometric mark behind content */}
+      <div
+        className="absolute pointer-events-none select-none"
+        aria-hidden="true"
+        style={{
+          top: '50%',
+          right: '-80px',
+          transform: 'translateY(-50%)',
+          width: '520px',
+          height: '520px',
+          opacity: 0.06,
+          filter: 'blur(1px)',
+          zIndex: 1,
+        }}
+      >
+        <img
+          src="/brand/logo.png"
+          alt=""
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        />
+      </div>
+
       {/* Floating accent orb */}
       <div
         className="absolute pointer-events-none"

@@ -76,35 +76,8 @@ export default function About() {
               <img
                 src="/brand/logo.png"
                 alt="BuildWithShadik logo"
-                className="h-20 w-auto object-contain"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  target.style.display = 'none';
-                  const fallback = target.nextElementSibling as HTMLElement;
-                  if (fallback) fallback.style.display = 'flex';
-                }}
+                style={{ height: '100px', width: 'auto', objectFit: 'contain' }}
               />
-              {/* Fallback text logo */}
-              <div
-                className="hidden flex-col items-center gap-1"
-                aria-hidden="true"
-              >
-                <div
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-                  style={{
-                    background: 'rgba(163,230,53,0.1)',
-                    border: '1px solid rgba(163,230,53,0.2)',
-                  }}
-                >
-                  ✦
-                </div>
-                <p
-                  className="text-xl font-bold tracking-tight mt-3"
-                  style={{ color: '#f5f5f5', fontFamily: 'Inter, sans-serif' }}
-                >
-                  BUILD<span style={{ color: '#a3e635' }}>WITH</span>SHADIK
-                </p>
-              </div>
 
               <div className="text-center">
                 <p

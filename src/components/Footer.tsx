@@ -50,20 +50,8 @@ export default function Footer() {
             <img
               src="/brand/logo.png"
               alt="BuildWithShadik"
-              className="h-8 w-auto mb-4"
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).style.display = 'none';
-                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
-                if (fallback) fallback.style.display = 'block';
-              }}
+              style={{ height: '52px', width: 'auto', objectFit: 'contain', marginBottom: '0.75rem' }}
             />
-            {/* Text fallback */}
-            <div style={{ display: 'none' }}>
-              <p className="font-bold text-sm tracking-tight mb-1" style={{ color: '#f5f5f5' }}>
-                BUILD<span style={{ color: '#a3e635' }}>WITH</span>SHADIK
-              </p>
-            </div>
-
             <p className="text-xs mb-1" style={{ color: '#a3e635', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
               AI & Digital Solutions
             </p>

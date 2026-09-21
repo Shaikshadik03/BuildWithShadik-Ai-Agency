@@ -71,32 +71,14 @@ export default function Navbar() {
             <a
               href="#home"
               onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}
-              className="flex items-center gap-2 flex-shrink-0"
+              className="flex items-center flex-shrink-0"
               aria-label="BuildWithShadik home"
             >
               <img
                 src="/brand/logo.png"
                 alt="BuildWithShadik"
-                className="h-8 w-auto"
-                onError={(e) => {
-                  // Fallback text logo if image not found
-                  const target = e.currentTarget;
-                  target.style.display = 'none';
-                  const fallback = target.nextElementSibling as HTMLElement;
-                  if (fallback) fallback.style.display = 'flex';
-                }}
+                style={{ height: '42px', width: 'auto', objectFit: 'contain' }}
               />
-              <span
-                className="hidden items-center gap-1"
-                aria-hidden="true"
-              >
-                <span
-                  className="text-white font-bold text-sm tracking-tight"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
-                >
-                  BUILD<span style={{ color: '#a3e635' }}>WITH</span>SHADIK
-                </span>
-              </span>
             </a>
 
             {/* Desktop Nav */}
