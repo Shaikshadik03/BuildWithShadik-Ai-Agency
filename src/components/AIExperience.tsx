@@ -11,15 +11,14 @@ export default function AIExperience() {
           <div>
             <span className="micro-label mb-3">
               <span className="micro-label-dot" />
-              SIGNATURE EXPERIENCE / 06
+              INTERACTIVE DEMO / 06
             </span>
             <h2 className="text-3xl sm:text-5xl font-serif-normal text-[#f4f4f0] tracking-tight mt-2">
-              Autonomous Client Intake.
+              How a visitor becomes a client.
             </h2>
           </div>
           <p className="text-sm sm:text-base text-[#888888] max-w-md font-light">
-            Experience how our conversational assistants interact with real visitors:
-            answering exact service questions, collecting lead details, and handing off cleanly.
+            An example of a website assistant answering questions about pricing and services, then opening a direct WhatsApp chat with the business owner.
           </p>
         </div>
 

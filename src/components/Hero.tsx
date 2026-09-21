@@ -36,16 +36,15 @@ export default function Hero() {
           {/* Left: 7 Columns Editorial Typography */}
           <div className="lg:col-span-7 flex flex-col">
             <h1 className="text-4xl sm:text-6xl xl:text-[4.75rem] font-serif-normal leading-[1.05] tracking-[-0.03em] text-[#f4f4f0] mb-8">
-              Build Smarter.
+              We design websites.
               <br />
               <span className="font-serif-italic text-[#a3e635] font-light">
-                Grow Better.
+                And automate the boring stuff.
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-[#999999] leading-relaxed max-w-xl font-light mb-10">
-              Websites, AI systems and practical automations designed and engineered
-              around how your business actually operates.
+              Hand-coded websites, WhatsApp inquiry flows, and custom tools built directly for local clinics, shops, and service businesses in Hyderabad.
             </p>
 
             {/* Deliberate Action Row */}
@@ -89,24 +88,24 @@ export default function Hero() {
                 {/* 1. Client Conversation */}
                 <div className="p-3.5 rounded bg-[#141414] border border-white/[0.06]">
                   <div className="flex items-center justify-between text-[11px] font-mono text-[#888888] mb-2">
-                    <span>INCOMING_LEAD</span>
+                    <span>CUSTOMER_INQUIRY</span>
                     <span className="text-[#a3e635]">WHATSAPP · 2m ago</span>
                   </div>
-                  <p className="text-xs text-[#e5e5e0] leading-snug">
-                    "Hi, we need to redesign our clinic website and connect automated patient slot booking."
+                  <p className="text-xs text-[#e5e5e0] leading-snug font-sans">
+                    "Hey Shadik, we need a clean menu site for our bistro with a table reservation button."
                   </p>
                 </div>
 
                 {/* 2. Automated Pipeline Node */}
                 <div className="p-3.5 rounded bg-[#141414] border border-white/[0.06]">
                   <div className="flex items-center justify-between text-[11px] font-mono text-[#888888] mb-2">
-                    <span>AI_AGENT_RESPONSE</span>
-                    <span className="text-[#a3e635]">AUTONOMOUS</span>
+                    <span>DISPATCH_LOG</span>
+                    <span className="text-[#a3e635]">AUTOMATED FLOW</span>
                   </div>
                   <div className="text-xs text-[#b5b5b0] space-y-1">
-                    <p>✓ Patient intent identified: Dental appointment</p>
-                    <p>✓ Available slot allocated: Thu, 4:30 PM</p>
-                    <p className="text-[#a3e635]">→ Calendar synced & WhatsApp confirmation dispatched</p>
+                    <p>• Form submitted with party size: 4 guests</p>
+                    <p>• Alert forwarded to owner WhatsApp in 0.4s</p>
+                    <p className="text-[#a3e635]">→ Google Sheets reservation row created successfully</p>
                   </div>
                 </div>
 

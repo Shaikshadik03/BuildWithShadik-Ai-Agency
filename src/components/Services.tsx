@@ -13,59 +13,59 @@ interface ServiceEntry {
 const SERVICES_LIST: ServiceEntry[] = [
   {
     num: '01',
-    title: 'Business Websites',
+    title: 'Custom Business Websites',
     tag: 'Web Engineering',
-    summary: 'Fast, responsive, editorial digital storefronts built with modern code.',
-    detail: 'Clean typography, mobile-first design, interactive WhatsApp CTAs, and semantic structure without bloated template builders.'
+    summary: 'Fast, responsive sites coded in React and Vite. Zero clunky WordPress plugins.',
+    detail: 'Clean typography, mobile-first layouts, WhatsApp chat buttons, and sensible forms that send inquiries directly to your phone.'
   },
   {
     num: '02',
-    title: 'Custom AI Chatbots',
-    tag: 'Conversational Systems',
-    summary: 'Virtual agents customized on your exact pricing, FAQs, and business policies.',
-    detail: 'Understands customer intent, qualifies incoming leads 24/7, and triggers smooth handoffs to your personal WhatsApp.'
+    title: 'WhatsApp Automation & Alerts',
+    tag: 'Messaging Workflows',
+    summary: 'Send instant booking confirmations and alert owners when customers reach out.',
+    detail: 'We connect your website forms to WhatsApp so you can reply in seconds without checking email all day.'
   },
   {
     num: '03',
-    title: 'WhatsApp & Inbox Automation',
-    tag: 'Workflow Automation',
-    summary: 'Connect messaging channels with n8n/Make to eliminate manual admin work.',
-    detail: 'Automated welcome flows, instant lead alert notifications to the owner’s phone, and continuous Google Sheets/CRM sync.'
+    title: 'Customer Support Chatbots',
+    tag: 'Chat Systems',
+    summary: 'Helpful website assistants that answer pricing and location questions 24/7.',
+    detail: 'Trained on your real menu, price sheet, or FAQ so customers get instant answers at midnight.'
   },
   {
     num: '04',
-    title: 'WhatsApp Business Setup',
-    tag: 'Direct Messaging',
-    summary: 'Turn standard business messaging into a structured customer acquisition channel.',
-    detail: 'Verified business profile configuration, product catalogs, organized customer labels, and one-tap click-to-chat web links.'
+    title: 'WhatsApp Business Configuration',
+    tag: 'Local Sales Channel',
+    summary: 'Professional profile setup, catalog creation, and organized customer labels.',
+    detail: 'Turn casual chats into structured sales with auto-greetings and catalog showcases.'
   },
   {
     num: '05',
-    title: 'AI Voice Agents',
-    tag: 'Voice AI',
-    summary: 'Natural telephony agents designed to handle inbound calls and queries.',
-    detail: 'Synthesizes conversational speech, answers frequent questions, and captures customer intake information automatically.'
+    title: 'Phone Call Support Agents',
+    tag: 'Voice Inquiries',
+    summary: 'Automated voice answering for common questions and appointment bookings.',
+    detail: 'Takes customer calls when your staff is busy and logs inquiries straight into your calendar.'
   },
   {
     num: '06',
-    title: 'AI Appointment Booking',
-    tag: 'Scheduling',
-    summary: 'Frictionless client booking systems that eliminate phone tag.',
-    detail: 'Real-time calendar slot picking, automated SMS/WhatsApp booking reminders, and zero customer no-show workflows.'
+    title: 'Self-Serve Appointment Scheduling',
+    tag: 'Calendar Systems',
+    summary: 'Let customers pick their own haircut or consultation slot directly online.',
+    detail: 'Reduces phone tag with real-time slot selection and WhatsApp appointment reminders.'
   },
   {
     num: '07',
-    title: 'AI-Generated Visuals',
-    tag: 'Creative Production',
-    summary: 'Studio-grade marketing and product imagery without costly photoshoots.',
-    detail: 'Photorealistic background generation, digital campaign creatives, and brand assets delivered across all social formats.'
+    title: 'Product & Social Media Visuals',
+    tag: 'Graphic Assets',
+    summary: 'Clean promotional graphics and product showcase images for your social feeds.',
+    detail: 'High-resolution images sized for Instagram stories, banners, and digital menus.'
   },
   {
     num: '08',
-    title: 'Maps & Local Growth',
-    tag: 'Local SEO',
-    summary: 'Make your business discoverable when nearby customers search on Google.',
-    detail: 'Google Business Profile ranking setup, geo-targeting, automated review request flows, and verified contact points.'
+    title: 'Google Maps & Local Presence',
+    tag: 'Local Visibility',
+    summary: 'Get found easily when people in Hyderabad search for your shop or service.',
+    detail: 'Google Business Profile optimization, clear map directions, and WhatsApp review collection.'
   }
 ];
 
