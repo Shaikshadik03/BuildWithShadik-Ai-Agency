@@ -1,4 +1,5 @@
 import React from 'react';
+import logoImg from '../assets/logo.png';
 
 export default function About() {
   return (
@@ -74,7 +75,7 @@ export default function About() {
             >
               {/* Logo */}
               <img
-                src="/brand/logo.png"
+                src={logoImg}
                 alt="BuildWithShadik logo"
                 style={{ height: '100px', width: 'auto', objectFit: 'contain' }}
               />

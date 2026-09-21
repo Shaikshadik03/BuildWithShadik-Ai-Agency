@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { getWhatsAppUrl } from '../services/whatsappService';
+import logoImg from '../assets/logo.png';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
@@ -75,7 +76,7 @@ export default function Navbar() {
               aria-label="BuildWithShadik home"
             >
               <img
-                src="/brand/logo.png"
+                src={logoImg}
                 alt="BuildWithShadik"
                 style={{ height: '42px', width: 'auto', objectFit: 'contain' }}
               />

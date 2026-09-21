@@ -1,6 +1,7 @@
 import React from 'react';
 import { CONTACT } from '../services/whatsappService';
 import { getWhatsAppUrl } from '../services/whatsappService';
+import logoImg from '../assets/logo.png';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
@@ -48,7 +49,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <img
-              src="/brand/logo.png"
+              src={logoImg}
               alt="BuildWithShadik"
               style={{ height: '52px', width: 'auto', objectFit: 'contain', marginBottom: '0.75rem' }}
             />

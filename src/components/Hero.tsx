@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { getWhatsAppUrl } from '../services/whatsappService';
+import logoImg from '../assets/logo.png';
 
 const FLOATING_CARDS = [
   {
@@ -74,7 +75,7 @@ export default function Hero() {
         }}
       >
         <img
-          src="/brand/logo.png"
+          src={logoImg}
           alt=""
           style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />
