@@ -65,7 +65,7 @@ export default function Chatbot() {
     }
 
     try {
-      const response = await getAIResponse(text);
+      const response = await getAIResponse(text, messages);
       const aiMsg: ChatMessage = {
         id: genId(),
         role: 'assistant',
@@ -158,11 +158,28 @@ export default function Chatbot() {
                 AI
               </div>
               <div>
-                <p style={{ color: '#f5f5f5', fontWeight: 600, fontSize: '0.875rem', lineHeight: 1.2 }}>
-                  BuildWithShadik AI
-                </p>
-                <p style={{ color: 'rgba(245,245,245,0.4)', fontSize: '0.7rem' }}>
-                  How can we help?
+                <div className="flex items-center gap-1.5">
+                  <p style={{ color: '#f5f5f5', fontWeight: 600, fontSize: '0.875rem', lineHeight: 1.2 }}>
+                    BuildWithShadik AI
+                  </p>
+                  <span
+                    style={{
+                      fontSize: '0.65rem',
+                      fontWeight: 700,
+                      letterSpacing: '0.05em',
+                      color: '#a3e635',
+                      background: 'rgba(163,230,53,0.15)',
+                      border: '1px solid rgba(163,230,53,0.3)',
+                      padding: '1px 6px',
+                      borderRadius: '999px',
+                    }}
+                  >
+                    LIVE
+                  </span>
+                </div>
+                <p style={{ color: 'rgba(245,245,245,0.4)', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#a3e635', display: 'inline-block' }} />
+                  Powered by Groq · Llama 3.3
                 </p>
               </div>
             </div>
