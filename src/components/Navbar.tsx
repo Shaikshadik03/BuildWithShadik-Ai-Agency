@@ -1,208 +1,157 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { getWhatsAppUrl } from '../services/whatsappService';
 import logoImg from '../assets/logo.png';
 
-const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'Services', href: '#services' },
+const NAV_ITEMS = [
   { label: 'Work', href: '#work' },
+  { label: 'Services', href: '#services' },
   { label: 'Process', href: '#process' },
-  { label: 'About', href: '#about' },
+  { label: 'Why Us', href: '#principles' },
+  { label: 'Studio', href: '#about' },
   { label: 'FAQ', href: '#faq' },
-  { label: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: '-40% 0px -55% 0px' }
-    );
-
-    document.querySelectorAll('section[id]').forEach((section) => {
-      observer.observe(section);
-    });
-
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleNavClick = (href: string) => {
-    setMenuOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    setMobileMenuOpen(false);
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-        style={{
-          background: isScrolled
-            ? 'rgba(10, 10, 10, 0.85)'
-            : 'transparent',
-          backdropFilter: isScrolled ? 'blur(16px)' : 'none',
-          WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
-          borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
-        }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? 'py-3 bg-[#080808]/90 backdrop-blur-md border-b border-white/[0.06]'
+            : 'py-5 bg-transparent'
+        }`}
       >
-        <div className="container-site">
-          <nav className="flex items-center justify-between h-16 md:h-18" aria-label="Main navigation">
-            {/* Logo */}
-            <a
-              href="#home"
-              onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}
-              className="flex items-center flex-shrink-0"
-              aria-label="BuildWithShadik home"
-            >
-              <img
-                src={logoImg}
-                alt="BuildWithShadik"
-                style={{ height: '42px', width: 'auto', objectFit: 'contain' }}
-              />
-            </a>
-
-            {/* Desktop Nav */}
-            <ul className="hidden md:flex items-center gap-1" role="list">
-              {NAV_LINKS.map((link) => {
-                const id = link.href.replace('#', '');
-                const isActive = activeSection === id;
-                return (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                      className="relative px-3 py-2 text-sm transition-colors duration-200 rounded-lg"
-                      style={{
-                        color: isActive ? '#a3e635' : 'rgba(245,245,245,0.7)',
-                      }}
-                      onMouseEnter={(e) => {
-                        if (!isActive) (e.currentTarget as HTMLElement).style.color = '#f5f5f5';
-                      }}
-                      onMouseLeave={(e) => {
-                        if (!isActive) (e.currentTarget as HTMLElement).style.color = 'rgba(245,245,245,0.7)';
-                      }}
-                      aria-current={isActive ? 'page' : undefined}
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-
-            {/* CTA */}
-            <div className="hidden md:flex items-center gap-3">
-              <a
-                href={getWhatsAppUrl("Hi Shaik, I'd like to talk about a project.")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-sm py-2 px-5"
-              >
-                Let's Talk
-                <ArrowUpRight size={14} />
-              </a>
+        <div className="studio-container flex items-center justify-between">
+          {/* Left: Distinctive Studio Brand Identity */}
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="flex items-center gap-3.5 group"
+            aria-label="BuildWithShadik Studio"
+          >
+            <img
+              src={logoImg}
+              alt="BuildWithShadik Logo"
+              className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="hidden sm:flex flex-col">
+              <span className="text-[13px] font-semibold tracking-tight text-[#f4f4f0] leading-none">
+                BUILD WITH SHADIK
+              </span>
+              <span className="text-[10px] font-mono tracking-wider text-[#888888] mt-1 uppercase">
+                HYD · DIGITAL STUDIO
+              </span>
             </div>
+          </a>
 
-            {/* Mobile menu button */}
-            <button
-              className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg transition-colors"
-              style={{
-                background: menuOpen ? 'rgba(163,230,53,0.1)' : 'transparent',
-                border: '1px solid rgba(255,255,255,0.15)',
-              }}
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={menuOpen}
-              aria-controls="mobile-menu"
-            >
-              {menuOpen ? (
-                <X size={18} color="#f5f5f5" />
-              ) : (
-                <Menu size={18} color="#f5f5f5" />
-              )}
-            </button>
+          {/* Center: Clean Editorial Navigation */}
+          <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.href);
+                }}
+                className="text-[13px] font-medium text-[#888888] hover:text-[#f4f4f0] transition-colors duration-200 tracking-tight"
+              >
+                {item.label}
+              </a>
+            ))}
           </nav>
+
+          {/* Right: Thoughtful, deliberate Action */}
+          <div className="hidden md:flex items-center gap-5">
+            <span className="text-[11px] font-mono text-[#888888] flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#a3e635] animate-pulse" />
+              AVAILABLE Q1/Q2
+            </span>
+            <a
+              href={getWhatsAppUrl("Hi Shaik, I'd like to discuss a project with your studio.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[13px] font-semibold px-4 py-2 rounded border border-white/15 text-[#f4f4f0] hover:bg-white hover:text-[#080808] transition-all duration-200"
+            >
+              Let's Talk
+              <ArrowUpRight size={14} />
+            </a>
+          </div>
+
+          {/* Mobile hamburger button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-[#e5e5e0] hover:text-[#a3e635] transition-colors"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </header>
 
-      {/* Mobile Menu */}
-      <div
-        id="mobile-menu"
-        className="fixed inset-0 z-40 md:hidden transition-all duration-300"
-        style={{
-          pointerEvents: menuOpen ? 'auto' : 'none',
-          opacity: menuOpen ? 1 : 0,
-          transform: menuOpen ? 'translateY(0)' : 'translateY(-8px)',
-        }}
-        aria-hidden={!menuOpen}
-      >
-        {/* Overlay */}
-        <div
-          className="absolute inset-0"
-          style={{ background: 'rgba(10,10,10,0.96)', backdropFilter: 'blur(12px)' }}
-          onClick={() => setMenuOpen(false)}
-        />
-        {/* Menu content */}
-        <div className="relative flex flex-col justify-center h-full px-8">
-          <nav aria-label="Mobile navigation">
-            <ul className="flex flex-col gap-1" role="list">
-              {NAV_LINKS.map((link, i) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                    className="flex items-center justify-between py-4 border-b text-xl font-medium transition-colors"
-                    style={{
-                      borderColor: 'rgba(255,255,255,0.06)',
-                      color: 'rgba(245,245,245,0.85)',
-                      transitionDelay: menuOpen ? `${i * 40}ms` : '0ms',
-                    }}
-                  >
-                    <span>{link.label}</span>
-                    <span style={{ color: '#a3e635', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.1em' }}>
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-8">
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-[#080808]/98 backdrop-blur-xl md:hidden pt-24 px-6 flex flex-col justify-between pb-12">
+          <div className="flex flex-col gap-6">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-[#888888]">
+              Directory
+            </span>
+            {NAV_ITEMS.map((item, idx) => (
               <a
-                href={getWhatsAppUrl("Hi Shaik, I'd like to talk about a project.")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary w-full justify-center text-base"
-                onClick={() => setMenuOpen(false)}
+                key={item.label}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.href);
+                }}
+                className="text-2xl font-serif-italic text-[#f4f4f0] hover:text-[#a3e635] flex items-center justify-between border-b border-white/[0.08] pb-3"
               >
-                Let's Talk
-                <ArrowUpRight size={16} />
+                <span>{item.label}</span>
+                <span className="text-xs font-mono text-[#888888]">0{idx + 1}</span>
               </a>
+            ))}
+          </div>
+
+          <div className="pt-6 border-t border-white/10 flex flex-col gap-4">
+            <div className="flex items-center gap-2 text-xs font-mono text-[#888888]">
+              <span className="w-2 h-2 rounded-full bg-[#a3e635]" />
+              Currently taking select projects
             </div>
-          </nav>
+            <a
+              href={getWhatsAppUrl("Hi Shaik, I'd like to talk about a project.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-studio-primary text-center justify-center py-3.5 w-full"
+            >
+              Start A Conversation
+              <ArrowUpRight size={16} />
+            </a>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

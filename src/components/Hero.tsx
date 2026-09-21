@@ -1,341 +1,154 @@
 import React from 'react';
-import { ArrowRight, ArrowDown } from 'lucide-react';
+import { ArrowUpRight, ArrowDown } from 'lucide-react';
 import { getWhatsAppUrl } from '../services/whatsappService';
-import logoImg from '../assets/logo.png';
-
-const FLOATING_CARDS = [
-  {
-    label: 'AI Chatbot',
-    sub: 'Automated support',
-    icon: '🤖',
-    delay: '0s',
-    position: { top: '18%', right: '2%' },
-  },
-  {
-    label: 'WhatsApp Automation',
-    sub: 'Instant follow-ups',
-    icon: '💬',
-    delay: '2s',
-    position: { top: '50%', right: '0%' },
-  },
-  {
-    label: 'AI Voice Agent',
-    sub: 'Conversational AI',
-    icon: '🎙️',
-    delay: '4s',
-    position: { top: '75%', right: '4%' },
-  },
-];
-
-const TRUST_ITEMS = [
-  { label: 'Websites', icon: '🌐' },
-  { label: 'AI Solutions', icon: '✦' },
-  { label: 'Automation', icon: '⚡' },
-  { label: 'Digital Growth', icon: '↗' },
-];
 
 export default function Hero() {
-  const handleScrollToServices = () => {
-    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+  const handleScrollToWork = () => {
+    document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
-      style={{
-        background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(163,230,53,0.06) 0%, transparent 60%), #0a0a0a',
-      }}
-      aria-label="Hero section"
+      className="relative min-h-[92vh] flex flex-col justify-between pt-32 pb-12 border-b border-white/[0.07]"
     >
-      {/* Background grid */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
+      <div className="studio-container w-full my-auto">
+        {/* Editorial Top Status */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-10 pb-4 border-b border-white/[0.06]">
+          <div className="flex items-center gap-3">
+            <span className="micro-label">
+              <span className="micro-label-dot" />
+              BUILDWITHSHADIK / STUDIO
+            </span>
+            <span className="hidden sm:inline text-white/20 font-mono text-xs">/</span>
+            <span className="hidden sm:inline font-mono text-[11px] text-[#888888] tracking-wider uppercase">
+              HYDERABAD, IN
+            </span>
+          </div>
 
-      {/* Large logo watermark — geometric mark behind content */}
-      <div
-        className="absolute pointer-events-none select-none"
-        aria-hidden="true"
-        style={{
-          top: '50%',
-          right: '-80px',
-          transform: 'translateY(-50%)',
-          width: '520px',
-          height: '520px',
-          opacity: 0.06,
-          filter: 'blur(1px)',
-          zIndex: 1,
-        }}
-      >
-        <img
-          src={logoImg}
-          alt=""
-          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-        />
-      </div>
+          <span className="font-mono text-[11px] text-[#888888] tracking-wider uppercase">
+            EST. 2026 · SHADI CREATIONS
+          </span>
+        </div>
 
-      {/* Floating accent orb */}
-      <div
-        className="absolute pointer-events-none"
-        aria-hidden="true"
-        style={{
-          width: '500px',
-          height: '500px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(163,230,53,0.07) 0%, transparent 70%)',
-          top: '-100px',
-          right: '-100px',
-        }}
-      />
-
-      <div className="container-site relative z-10 pt-28 pb-16 md:pt-32 md:pb-24">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          {/* Left: Content */}
-          <div className="max-w-2xl">
-            {/* Eyebrow */}
-            <div className="animate-fade-up flex items-center gap-3 mb-7">
-              <span
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase"
-                style={{
-                  background: 'rgba(163,230,53,0.1)',
-                  border: '1px solid rgba(163,230,53,0.3)',
-                  color: '#a3e635',
-                }}
-              >
-                <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    background: '#a3e635',
-                    display: 'inline-block',
-                    animation: 'pulse 2s infinite',
-                  }}
-                />
-                AI & Digital Solutions
-              </span>
-            </div>
-
-            {/* Main headline */}
-            <h1 className="animate-fade-up-delayed section-heading mb-4" style={{ fontSize: 'clamp(2.8rem, 6vw, 4.5rem)' }}>
+        {/* 12-Column Asymmetric Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left: 7 Columns Editorial Typography */}
+          <div className="lg:col-span-7 flex flex-col">
+            <h1 className="text-4xl sm:text-6xl xl:text-[4.75rem] font-serif-normal leading-[1.05] tracking-[-0.03em] text-[#f4f4f0] mb-8">
               Build Smarter.
               <br />
-              <span style={{ color: '#a3e635' }}>Grow Better.</span>
+              <span className="font-serif-italic text-[#a3e635] font-light">
+                Grow Better.
+              </span>
             </h1>
 
-            {/* Supporting line */}
-            <p
-              className="animate-fade-up-delayed-2 mb-5 font-serif italic"
-              style={{ color: 'rgba(245,245,245,0.5)', fontSize: '1.1rem' }}
-            >
-              Websites, AI, automation and digital systems built for modern businesses.
+            <p className="text-lg sm:text-xl text-[#999999] leading-relaxed max-w-xl font-light mb-10">
+              Websites, AI systems and practical automations designed and engineered
+              around how your business actually operates.
             </p>
 
-            {/* Body */}
-            <p
-              className="animate-fade-up-delayed-2 mb-9 leading-relaxed"
-              style={{ color: 'rgba(245,245,245,0.65)', fontSize: '1rem', maxWidth: '520px' }}
-            >
-              We help businesses build a stronger digital presence, automate repetitive work, and create better customer experiences using practical AI-powered solutions.
-            </p>
-
-            {/* CTAs */}
-            <div className="animate-fade-up-delayed-3 flex flex-wrap gap-3">
+            {/* Deliberate Action Row */}
+            <div className="flex flex-wrap items-center gap-4">
               <a
-                href={getWhatsAppUrl()}
+                href={getWhatsAppUrl("Hi Shaik, I'd like to build something with your studio.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary"
+                className="btn-studio-primary"
               >
                 Let's Build Together
-                <ArrowRight size={16} />
+                <ArrowUpRight size={15} />
               </a>
               <button
-                onClick={handleScrollToServices}
-                className="btn-secondary"
-                aria-label="Scroll to services section"
+                onClick={handleScrollToWork}
+                className="btn-studio-secondary"
               >
-                Explore Services
-                <ArrowDown size={16} />
+                Selected Work
+                <ArrowDown size={14} />
               </button>
             </div>
           </div>
 
-          {/* Right: Visual */}
-          <div className="relative hidden lg:flex items-center justify-center">
-            {/* Main workspace panel */}
-            <div
-              className="relative w-full max-w-sm mx-auto"
-              style={{ height: '420px' }}
-            >
-              {/* Central dark card */}
-              <div
-                className="absolute inset-0 rounded-2xl"
-                style={{
-                  background: 'rgba(20,20,20,0.9)',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  boxShadow: '0 40px 120px rgba(0,0,0,0.6)',
-                }}
-                aria-hidden="true"
-              >
-                {/* Header bar */}
-                <div
-                  className="flex items-center gap-2 px-4 py-3 border-b"
-                  style={{ borderColor: 'rgba(255,255,255,0.06)' }}
-                >
-                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57', display: 'inline-block' }} />
-                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e', display: 'inline-block' }} />
-                  <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840', display: 'inline-block' }} />
-                  <span
-                    className="ml-auto text-xs font-mono"
-                    style={{ color: 'rgba(255,255,255,0.2)' }}
-                  >
-                    BuildWithShadik AI
-                  </span>
+          {/* Right: 5 Columns Genuine Digital Artifact Composition */}
+          <div className="lg:col-span-5 flex flex-col">
+            <div className="relative rounded-lg bg-[#0e0e0e] border border-white/10 p-5 shadow-2xl">
+              {/* Window Header */}
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.06]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                </div>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#888888]">
+                  SYSTEM_MONITOR / ACTIVE
+                </span>
+              </div>
+
+              {/* Layered Workflows - Real digital product representation */}
+              <div className="space-y-3.5">
+                {/* 1. Client Conversation */}
+                <div className="p-3.5 rounded bg-[#141414] border border-white/[0.06]">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-[#888888] mb-2">
+                    <span>INCOMING_LEAD</span>
+                    <span className="text-[#a3e635]">WHATSAPP · 2m ago</span>
+                  </div>
+                  <p className="text-xs text-[#e5e5e0] leading-snug">
+                    "Hi, we need to redesign our clinic website and connect automated patient slot booking."
+                  </p>
                 </div>
 
-                {/* Chat preview */}
-                <div className="p-5 flex flex-col gap-3">
-                  {/* Customer message */}
-                  <div className="flex justify-end">
-                    <div
-                      className="rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm max-w-xs"
-                      style={{
-                        background: 'rgba(255,255,255,0.08)',
-                        color: 'rgba(245,245,245,0.85)',
-                      }}
-                    >
-                      Hi, I need a website for my business.
-                    </div>
+                {/* 2. Automated Pipeline Node */}
+                <div className="p-3.5 rounded bg-[#141414] border border-white/[0.06]">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-[#888888] mb-2">
+                    <span>AI_AGENT_RESPONSE</span>
+                    <span className="text-[#a3e635]">AUTONOMOUS</span>
                   </div>
-                  {/* AI reply */}
-                  <div className="flex items-start gap-2">
-                    <div
-                      className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-                      style={{ background: 'rgba(163,230,53,0.2)', color: '#a3e635', border: '1px solid rgba(163,230,53,0.3)' }}
-                      aria-hidden="true"
-                    >
-                      AI
-                    </div>
-                    <div
-                      className="rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm max-w-xs leading-relaxed"
-                      style={{
-                        background: 'rgba(163,230,53,0.08)',
-                        border: '1px solid rgba(163,230,53,0.15)',
-                        color: 'rgba(245,245,245,0.85)',
-                      }}
-                    >
-                      Absolutely! We build modern, responsive websites around your brand. Shall I share our portfolio?
-                    </div>
+                  <div className="text-xs text-[#b5b5b0] space-y-1">
+                    <p>✓ Patient intent identified: Dental appointment</p>
+                    <p>✓ Available slot allocated: Thu, 4:30 PM</p>
+                    <p className="text-[#a3e635]">→ Calendar synced & WhatsApp confirmation dispatched</p>
                   </div>
-                  {/* Status bar */}
-                  <div
-                    className="mt-3 flex items-center justify-between text-xs rounded-xl px-3 py-2"
-                    style={{
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid rgba(255,255,255,0.05)',
-                      color: 'rgba(245,245,245,0.3)',
-                    }}
-                  >
-                    <span>Lead captured ✓</span>
-                    <span style={{ color: '#a3e635' }}>● live</span>
-                  </div>
+                </div>
 
-                  {/* Workflow steps */}
-                  <div className="flex items-center gap-2 mt-2 flex-wrap">
-                    {['Customer', 'AI Chat', 'Lead', 'WhatsApp', 'Meeting'].map((step, i) => (
-                      <React.Fragment key={step}>
-                        <span
-                          className="text-xs px-2 py-1 rounded-full"
-                          style={{
-                            background: i === 0 ? 'rgba(163,230,53,0.15)' : 'rgba(255,255,255,0.05)',
-                            color: i === 0 ? '#a3e635' : 'rgba(245,245,245,0.4)',
-                            border: `1px solid ${i === 0 ? 'rgba(163,230,53,0.3)' : 'rgba(255,255,255,0.06)'}`,
-                          }}
-                        >
-                          {step}
-                        </span>
-                        {i < 4 && (
-                          <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.6rem' }}>→</span>
-                        )}
-                      </React.Fragment>
-                    ))}
+                {/* 3. Studio System Metrics */}
+                <div className="grid grid-cols-3 gap-2 pt-2 border-t border-white/[0.06] text-center">
+                  <div className="p-2 rounded bg-black/40">
+                    <div className="text-xs font-mono text-[#f4f4f0]">100%</div>
+                    <div className="text-[10px] text-[#777777] font-mono uppercase mt-0.5">Uptime</div>
+                  </div>
+                  <div className="p-2 rounded bg-black/40">
+                    <div className="text-xs font-mono text-[#a3e635]">0.3s</div>
+                    <div className="text-[10px] text-[#777777] font-mono uppercase mt-0.5">Response</div>
+                  </div>
+                  <div className="p-2 rounded bg-black/40">
+                    <div className="text-xs font-mono text-[#f4f4f0]">Direct</div>
+                    <div className="text-[10px] text-[#777777] font-mono uppercase mt-0.5">Handoff</div>
                   </div>
                 </div>
               </div>
-
-              {/* Floating cards */}
-              {FLOATING_CARDS.map((card) => (
-                <div
-                  key={card.label}
-                  className="absolute glass rounded-xl px-3 py-2.5 flex items-center gap-2.5"
-                  style={{
-                    ...card.position,
-                    right: '-10%',
-                    animation: `float 6s ease-in-out ${card.delay} infinite`,
-                    minWidth: '170px',
-                    zIndex: 10,
-                  }}
-                  aria-hidden="true"
-                >
-                  <span style={{ fontSize: '1.2rem' }}>{card.icon}</span>
-                  <div>
-                    <div className="text-xs font-semibold" style={{ color: '#f5f5f5' }}>
-                      {card.label}
-                    </div>
-                    <div className="text-xs" style={{ color: 'rgba(245,245,245,0.45)' }}>
-                      {card.sub}
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
-          </div>
-        </div>
 
-        {/* Trust row */}
-        <div
-          className="animate-fade-up-delayed-3 mt-16 pt-8 border-t"
-          style={{ borderColor: 'rgba(255,255,255,0.06)' }}
-        >
-          <div className="flex flex-wrap items-center gap-6 md:gap-10">
-            <span
-              className="text-xs font-medium tracking-widest uppercase"
-              style={{ color: 'rgba(245,245,245,0.3)' }}
-            >
-              What we do
-            </span>
-            {TRUST_ITEMS.map((item) => (
-              <div
-                key={item.label}
-                className="flex items-center gap-2"
-                style={{ color: 'rgba(245,245,245,0.55)' }}
-              >
-                <span style={{ color: '#a3e635', fontSize: '0.75rem' }}>{item.icon}</span>
-                <span className="text-sm font-medium">{item.label}</span>
-              </div>
-            ))}
+            {/* Caption underneath the composition */}
+            <p className="font-mono text-[11px] text-[#666666] mt-3.5 text-right uppercase tracking-wider">
+              FIG 01.1 — Integrated client-to-booking pipeline
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Scroll hint */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        aria-hidden="true"
-        style={{ animation: 'float 3s ease-in-out infinite' }}
-      >
-        <span style={{ color: 'rgba(245,245,245,0.2)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-          Scroll
-        </span>
-        <ArrowDown size={14} style={{ color: 'rgba(245,245,245,0.2)' }} />
+      {/* Bottom Architectural Bar */}
+      <div className="studio-container w-full pt-8">
+        <div className="flex flex-wrap items-center justify-between gap-6 text-xs text-[#777777] font-mono uppercase tracking-widest border-t border-white/[0.06] pt-5">
+          <div className="flex items-center gap-8">
+            <span>[01] WEBSITES</span>
+            <span>[02] CHATBOTS</span>
+            <span>[03] AUTOMATION</span>
+            <span>[04] VOICE SYSTEMS</span>
+          </div>
+          <span className="hidden sm:inline text-[#a3e635]">
+            ● PRODUCTION CODE · NO NO-CODE LOCK-IN
+          </span>
+        </div>
       </div>
     </section>
   );

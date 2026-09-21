@@ -1,209 +1,90 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { getWhatsAppUrl } from '../services/whatsappService';
-
-const WORKFLOW_STEPS = [
-  { label: 'Customer', icon: '👤' },
-  { label: 'AI Chatbot', icon: '🤖' },
-  { label: 'Lead Captured', icon: '✅' },
-  { label: 'WhatsApp Follow-up', icon: '💬' },
-  { label: 'Appointment', icon: '📅' },
-];
 
 export default function AIExperience() {
   return (
-    <section
-      id="ai-experience"
-      className="py-24 md:py-32"
-      style={{
-        background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(163,230,53,0.04) 0%, transparent 70%), #0d0d0d',
-      }}
-      aria-labelledby="ai-experience-heading"
-    >
-      <div className="container-site">
-        {/* Header */}
-        <div className="text-center mb-14 max-w-2xl mx-auto">
-          <p className="section-label mb-4">AI in Action</p>
-          <h2 id="ai-experience-heading" className="section-heading mb-5">
-            See What AI Can Do
-            <br />
-            <span style={{ color: '#a3e635' }}>For Your Business.</span>
-          </h2>
-          <p style={{ color: 'rgba(245,245,245,0.55)', lineHeight: 1.7 }}>
-            Here's a real example of how an AI system can handle a customer conversation and automatically move them through your workflow.
+    <section id="experience" className="py-24 md:py-32 border-b border-white/[0.07] bg-[#0b0b0b]">
+      <div className="studio-container">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-6 border-b border-white/[0.08]">
+          <div>
+            <span className="micro-label mb-3">
+              <span className="micro-label-dot" />
+              SIGNATURE EXPERIENCE / 06
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-serif-normal text-[#f4f4f0] tracking-tight mt-2">
+              Autonomous Client Intake.
+            </h2>
+          </div>
+          <p className="text-sm sm:text-base text-[#888888] max-w-md font-light">
+            Experience how our conversational assistants interact with real visitors:
+            answering exact service questions, collecting lead details, and handing off cleanly.
           </p>
         </div>
 
-        {/* Dashboard Mockup */}
-        <div
-          className="max-w-3xl mx-auto rounded-2xl overflow-hidden"
-          style={{
-            background: 'rgba(14,14,14,0.95)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            boxShadow: '0 40px 120px rgba(0,0,0,0.7)',
-          }}
-          role="img"
-          aria-label="AI chat workflow demo"
-        >
-          {/* Header bar */}
-          <div
-            className="flex items-center justify-between px-5 py-4 border-b"
-            style={{ borderColor: 'rgba(255,255,255,0.06)' }}
-          >
+        {/* Realistic Terminal / Chat Window Architecture */}
+        <div className="max-w-4xl mx-auto rounded-lg bg-[#111111] border border-white/10 overflow-hidden shadow-2xl">
+          {/* Chrome bar */}
+          <div className="flex items-center justify-between px-5 py-3.5 bg-[#161616] border-b border-white/[0.08]">
             <div className="flex items-center gap-2">
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#ff5f57', display: 'inline-block' }} />
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#febc2e', display: 'inline-block' }} />
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#28c840', display: 'inline-block' }} />
+              <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+              <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+              <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
             </div>
-            <div
-              className="flex items-center gap-2 text-xs"
-              style={{ color: 'rgba(245,245,245,0.3)' }}
-            >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: '50%',
-                  background: '#a3e635',
-                  display: 'inline-block',
-                  animation: 'pulse 2s infinite',
-                }}
-              />
-              BuildWithShadik AI — Live Demo
+            <div className="font-mono text-xs text-[#888888] flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#a3e635] animate-pulse" />
+              <span>LIVE DEMONSTRATION · SALON CLIENT FLOW</span>
             </div>
-            <div style={{ width: '60px' }} />
+            <span className="font-mono text-[11px] text-[#666666]">ID: 8309-HYD</span>
           </div>
 
-          {/* Chat area */}
-          <div className="p-6 flex flex-col gap-4">
-            {/* Customer message */}
+          {/* Conversation Stream */}
+          <div className="p-6 sm:p-10 space-y-6 font-sans text-sm">
+            {/* 1. Client query */}
             <div className="flex justify-end">
-              <div className="flex flex-col items-end gap-1">
-                <span
-                  className="text-xs mb-1"
-                  style={{ color: 'rgba(245,245,245,0.3)' }}
-                >
-                  Customer
-                </span>
-                <div
-                  className="rounded-2xl rounded-tr-sm px-4 py-3 max-w-xs text-sm"
-                  style={{
-                    background: 'rgba(255,255,255,0.08)',
-                    color: 'rgba(245,245,245,0.9)',
-                  }}
-                >
-                  Hi, I want to know about your services.
-                </div>
+              <div className="max-w-md rounded-lg px-4 py-3 bg-white/10 text-[#f4f4f0] border border-white/10">
+                "Hello, I need a modern website for our salon and an automated way for customers to view bridal packages and request appointments."
               </div>
             </div>
 
-            {/* AI response */}
-            <div className="flex items-start gap-3">
-              <div
-                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
-                style={{
-                  background: 'rgba(163,230,53,0.15)',
-                  border: '1px solid rgba(163,230,53,0.3)',
-                  color: '#a3e635',
-                }}
-                aria-hidden="true"
+            {/* 2. AI intelligent parsing */}
+            <div className="flex justify-start">
+              <div className="max-w-lg rounded-lg p-5 bg-[#181818] border border-white/[0.08] space-y-3">
+                <div className="flex items-center gap-2 font-mono text-[11px] text-[#a3e635]">
+                  <span>AI ASSISTANT</span>
+                  <span className="text-white/20">·</span>
+                  <span className="text-[#888888]">INTENT PARSED IN 240MS</span>
+                </div>
+                <p className="text-[#e5e5e0] leading-relaxed">
+                  "Understood. For a boutique salon, we recommend a 3-part system:
+                </p>
+                <ul className="text-xs font-mono space-y-1 text-[#b0b0a8] pl-2 border-l border-[#a3e635]/40">
+                  <li>01. High-contrast visual showcase featuring your bridal lookbook</li>
+                  <li>02. Clear transparent tier pricing with direct appointment calendar</li>
+                  <li>03. Instant WhatsApp integration so clients can confirm dates with 1 tap</li>
+                </ul>
+                <p className="text-[#e5e5e0] text-xs pt-1">
+                  Would you like to review our live salon prototype or discuss scope with Shaik Shadik?"
+                </p>
+              </div>
+            </div>
+
+            {/* 3. Action Trigger Callout */}
+            <div className="pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="text-xs font-mono text-[#888888]">
+                <span>RESULT: Lead verified ➔ Handed off to WhatsApp with prefilled spec</span>
+              </div>
+              <a
+                href={getWhatsAppUrl("Hi Shaik, I tested the salon intake demo on your site and would like a similar system.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-studio-primary text-xs py-2 px-4"
               >
-                AI
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-xs" style={{ color: 'rgba(245,245,245,0.3)' }}>
-                  BuildWithShadik AI
-                </span>
-                <div
-                  className="rounded-2xl rounded-tl-sm px-4 py-3 text-sm leading-relaxed max-w-sm"
-                  style={{
-                    background: 'rgba(163,230,53,0.06)',
-                    border: '1px solid rgba(163,230,53,0.15)',
-                    color: 'rgba(245,245,245,0.85)',
-                  }}
-                >
-                  Absolutely. We can help with websites, automation, AI chatbots, voice agents and more. Would you like to explore our services?
-                </div>
-                {/* Quick reply chips */}
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {['Websites', 'AI Chatbot', 'Automation'].map((item) => (
-                    <span
-                      key={item}
-                      className="text-xs px-3 py-1.5 rounded-full cursor-default"
-                      style={{
-                        background: 'rgba(255,255,255,0.04)',
-                        border: '1px solid rgba(255,255,255,0.12)',
-                        color: 'rgba(245,245,245,0.65)',
-                      }}
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
+                Talk On WhatsApp
+                <ArrowUpRight size={13} />
+              </a>
             </div>
-
-            {/* Divider */}
-            <div
-              className="border-t my-2"
-              style={{ borderColor: 'rgba(255,255,255,0.05)' }}
-            />
-
-            {/* Workflow */}
-            <div>
-              <p
-                className="text-xs font-semibold mb-4 tracking-widest uppercase"
-                style={{ color: 'rgba(245,245,245,0.3)' }}
-              >
-                Automated workflow triggered
-              </p>
-              <div className="flex items-center flex-wrap gap-2">
-                {WORKFLOW_STEPS.map((step, i) => (
-                  <React.Fragment key={step.label}>
-                    <div
-                      className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm"
-                      style={{
-                        background: i === 0 ? 'rgba(163,230,53,0.1)' : 'rgba(255,255,255,0.04)',
-                        border: `1px solid ${i === 0 ? 'rgba(163,230,53,0.25)' : 'rgba(255,255,255,0.07)'}`,
-                        color: i === 0 ? '#a3e635' : 'rgba(245,245,245,0.55)',
-                      }}
-                    >
-                      <span>{step.icon}</span>
-                      <span className="font-medium text-xs whitespace-nowrap">{step.label}</span>
-                    </div>
-                    {i < WORKFLOW_STEPS.length - 1 && (
-                      <ArrowRight
-                        size={12}
-                        style={{ color: 'rgba(255,255,255,0.2)', flexShrink: 0 }}
-                        aria-hidden="true"
-                      />
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* CTA bar */}
-          <div
-            className="px-6 py-4 border-t flex items-center justify-between flex-wrap gap-3"
-            style={{ borderColor: 'rgba(255,255,255,0.06)' }}
-          >
-            <p
-              className="text-xs"
-              style={{ color: 'rgba(245,245,245,0.35)' }}
-            >
-              This is a concept demo. We build real AI systems for real businesses.
-            </p>
-            <a
-              href={getWhatsAppUrl("Hi, I'd like to try your AI chatbot for my business.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary text-sm py-2 px-5"
-            >
-              Build This For My Business
-              <ArrowRight size={14} />
-            </a>
           </div>
         </div>
       </div>

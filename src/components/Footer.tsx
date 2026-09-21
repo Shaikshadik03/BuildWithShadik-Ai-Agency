@@ -1,165 +1,82 @@
 import React from 'react';
-import { CONTACT } from '../services/whatsappService';
+import { ArrowUpRight } from 'lucide-react';
 import { getWhatsAppUrl } from '../services/whatsappService';
 import logoImg from '../assets/logo.png';
 
-const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'Services', href: '#services' },
-  { label: 'Work', href: '#work' },
-  { label: 'About', href: '#about' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Contact', href: '#contact' },
-];
-
-const SERVICE_LINKS = [
-  'Websites',
-  'AI Photos',
-  'Chatbots',
-  'Automation',
-  'Voice AI',
-  'Booking',
-  'Maps',
-];
-
-const SOCIAL_LINKS = [
-  { label: 'Instagram', url: CONTACT.instagram },
-  { label: 'LinkedIn', url: CONTACT.linkedin },
-  { label: 'GitHub', url: CONTACT.github },
-];
-
 export default function Footer() {
-  const handleNavClick = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const activeSocials = SOCIAL_LINKS.filter((s) => s.url);
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer
-      style={{
-        background: '#080808',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-      }}
-      aria-label="Site footer"
-    >
-      <div className="container-site py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <img
-              src={logoImg}
-              alt="BuildWithShadik"
-              style={{ height: '52px', width: 'auto', objectFit: 'contain', marginBottom: '0.75rem' }}
-            />
-            <p className="text-xs mb-1" style={{ color: '#a3e635', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-              AI & Digital Solutions
+    <footer className="py-16 bg-[#060606] text-[#888888] font-sans">
+      <div className="studio-container space-y-12">
+        {/* Top: 12-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/[0.08]">
+          {/* Brand Info (5 cols) */}
+          <div className="md:col-span-5 space-y-4">
+            <div className="flex items-center gap-3">
+              <img
+                src={logoImg}
+                alt="BuildWithShadik Logo"
+                className="h-8 w-auto object-contain"
+              />
+              <span className="text-sm font-semibold text-[#f4f4f0] tracking-tight">
+                BUILD WITH SHADIK
+              </span>
+            </div>
+            <p className="text-xs text-[#777777] leading-relaxed max-w-sm font-light">
+              Independent digital engineering & AI solutions studio. We build bespoke websites,
+              intelligent WhatsApp bots, and frictionless business automations.
             </p>
-            <p className="text-xs mt-2" style={{ color: 'rgba(245,245,245,0.3)' }}>
-              by Shadi Creations
+            <p className="text-xs font-mono text-[#a3e635]">
+              by Shadi Creations · Maisammaguda, Hyderabad
             </p>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <p className="text-xs font-semibold mb-5 tracking-widest uppercase" style={{ color: 'rgba(245,245,245,0.35)' }}>
-              Navigation
-            </p>
-            <ul className="flex flex-col gap-2.5" role="list">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                    className="text-sm transition-colors"
-                    style={{ color: 'rgba(245,245,245,0.5)' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#f5f5f5')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(245,245,245,0.5)')}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+          {/* Directory Links (3 cols) */}
+          <div className="md:col-span-3 space-y-3">
+            <div className="font-mono text-xs uppercase tracking-wider text-[#e5e5e0]">
+              Studio Navigation
+            </div>
+            <ul className="space-y-2 text-xs font-mono text-[#777777]">
+              <li><a href="#home" className="hover:text-[#f4f4f0] transition-colors">Home</a></li>
+              <li><a href="#services" className="hover:text-[#f4f4f0] transition-colors">Capabilities</a></li>
+              <li><a href="#work" className="hover:text-[#f4f4f0] transition-colors">Selected Work</a></li>
+              <li><a href="#process" className="hover:text-[#f4f4f0] transition-colors">Process</a></li>
+              <li><a href="#about" className="hover:text-[#f4f4f0] transition-colors">Studio & Founder</a></li>
+              <li><a href="#faq" className="hover:text-[#f4f4f0] transition-colors">FAQ</a></li>
+              <li><a href="#contact" className="hover:text-[#f4f4f0] transition-colors">Inquire</a></li>
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <p className="text-xs font-semibold mb-5 tracking-widest uppercase" style={{ color: 'rgba(245,245,245,0.35)' }}>
-              Services
-            </p>
-            <ul className="flex flex-col gap-2.5" role="list">
-              {SERVICE_LINKS.map((s) => (
-                <li key={s}>
-                  <span className="text-sm" style={{ color: 'rgba(245,245,245,0.4)' }}>
-                    {s}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <p className="text-xs font-semibold mb-5 tracking-widest uppercase" style={{ color: 'rgba(245,245,245,0.35)' }}>
-              Contact
-            </p>
-            <div className="flex flex-col gap-3">
+          {/* Direct Communication (4 cols) */}
+          <div className="md:col-span-4 space-y-3">
+            <div className="font-mono text-xs uppercase tracking-wider text-[#e5e5e0]">
+              Direct Contact
+            </div>
+            <div className="space-y-2 text-xs font-mono text-[#777777]">
+              <p>WhatsApp: <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="text-[#e5e5e0] hover:text-[#a3e635]">+91 8309432965</a></p>
+              <p>Email: <a href="mailto:shaikshadik003@gmail.com" className="text-[#e5e5e0] hover:text-[#a3e635]">shaikshadik003@gmail.com</a></p>
+              <p>Founder: <span className="text-[#e5e5e0]">Shaik Shadik</span></p>
+            </div>
+            <div className="pt-2">
               <a
-                href={getWhatsAppUrl()}
+                href={getWhatsAppUrl("Hi Shaik, I'd like to discuss a project.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm transition-colors"
-                style={{ color: 'rgba(245,245,245,0.5)' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#a3e635')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(245,245,245,0.5)')}
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-[#a3e635] hover:underline"
               >
-                {CONTACT.phone}
+                Open WhatsApp Thread <ArrowUpRight size={13} />
               </a>
-              <a
-                href={`mailto:${CONTACT.email}`}
-                className="text-sm transition-colors"
-                style={{ color: 'rgba(245,245,245,0.5)' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#f5f5f5')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(245,245,245,0.5)')}
-              >
-                {CONTACT.email}
-              </a>
-              {activeSocials.length > 0 && (
-                <div className="flex gap-3 mt-2">
-                  {activeSocials.map((s) => (
-                    <a
-                      key={s.label}
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm transition-colors"
-                      style={{ color: 'rgba(245,245,245,0.4)' }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = '#f5f5f5')}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(245,245,245,0.4)')}
-                      aria-label={s.label}
-                    >
-                      {s.label}
-                    </a>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div
-          className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-8 border-t"
-          style={{ borderColor: 'rgba(255,255,255,0.05)' }}
-        >
-          <p className="text-xs" style={{ color: 'rgba(245,245,245,0.25)' }}>
-            © 2026 BuildWithShadik. All rights reserved.
-          </p>
-          <p className="text-xs" style={{ color: 'rgba(245,245,245,0.2)' }}>
-            Websites · AI · Automation
-          </p>
+        {/* Bottom Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#555555]">
+          <span>© {currentYear} BuildWithShadik. All rights reserved.</span>
+          <span className="uppercase tracking-widest text-[10px]">
+            Engineered with React 19 & Vite · No generic templates
+          </span>
         </div>
       </div>
     </footer>

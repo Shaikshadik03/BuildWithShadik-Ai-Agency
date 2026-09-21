@@ -367,44 +367,21 @@ export default function Chatbot() {
         </div>
       </div>
 
-      {/* Floating button */}
+      {/* Subtle Floating Studio Assistant Button */}
       <button
         onClick={() => setIsOpen((o) => !o)}
-        className="fixed z-50 flex items-center gap-2"
+        className="fixed z-50 flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-[#161616] text-[#e5e5e0] border border-white/15 hover:border-white/30 hover:bg-[#202020] transition-all duration-200 shadow-xl"
         style={{
           bottom: '1.5rem',
           right: '1.5rem',
-          background: isOpen ? 'rgba(20,20,20,0.95)' : '#a3e635',
-          border: isOpen ? '1px solid rgba(255,255,255,0.15)' : 'none',
-          borderRadius: '999px',
-          padding: '0.65rem 1.1rem',
-          cursor: 'pointer',
-          boxShadow: isOpen ? 'none' : '0 8px 32px rgba(163,230,53,0.35)',
-          transition: 'all 0.25s ease',
         }}
-        aria-label={isOpen ? 'Close AI assistant' : 'Open AI assistant'}
+        aria-label={isOpen ? 'Close studio assistant' : 'Open studio assistant'}
         aria-expanded={isOpen}
         aria-haspopup="dialog"
-        onMouseEnter={(e) => {
-          if (!isOpen) (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-2px)';
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)';
-        }}
       >
-        {isOpen ? (
-          <Minimize2 size={16} color="rgba(245,245,245,0.8)" />
-        ) : (
-          <Bot size={16} color="#0a0a0a" />
-        )}
-        <span
-          style={{
-            fontSize: '0.8rem',
-            fontWeight: 600,
-            color: isOpen ? 'rgba(245,245,245,0.8)' : '#0a0a0a',
-          }}
-        >
-          {isOpen ? 'Close' : 'AI Assistant'}
+        <span className="w-2 h-2 rounded-full bg-[#a3e635] animate-pulse" />
+        <span className="text-xs font-mono tracking-tight font-medium">
+          {isOpen ? 'Close' : 'Ask Studio AI'}
         </span>
       </button>
     </>

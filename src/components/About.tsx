@@ -3,106 +3,98 @@ import logoImg from '../assets/logo.png';
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="py-24 md:py-32"
-      style={{
-        background: '#0d0d0d',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
-      }}
-      aria-labelledby="about-heading"
-    >
-      <div className="container-site">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Content */}
-          <div>
-            <p className="section-label mb-6">About</p>
-            <h2 id="about-heading" className="section-heading mb-6">
-              Technology Should Make
-              <br />
-              <span style={{ color: '#a3e635' }}>Business Simpler.</span>
-            </h2>
+    <section id="about" className="py-24 md:py-32 border-b border-white/[0.07]">
+      <div className="studio-container">
+        {/* Editorial Split: 7 / 5 Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+          {/* Left Column: 7 Cols Studio Narrative */}
+          <div className="lg:col-span-7 space-y-8">
+            <div>
+              <span className="micro-label mb-3">
+                <span className="micro-label-dot" />
+                FOUNDER & PHILOSOPHY / 07
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-serif-normal text-[#f4f4f0] tracking-tight mt-2">
+                Crafted Personally.
+                <br />
+                <span className="font-serif-italic text-[#888888] font-light">
+                  Rooted In Hyderabad.
+                </span>
+              </h2>
+            </div>
 
-            <div className="flex flex-col gap-4 mb-10">
-              <p style={{ color: 'rgba(245,245,245,0.65)', lineHeight: 1.8 }}>
-                BuildWithShadik is an AI and digital solutions initiative focused on helping businesses adopt useful technology without unnecessary complexity.
+            <div className="space-y-5 text-sm sm:text-base text-[#999999] leading-relaxed font-light">
+              <p>
+                <strong className="text-[#f4f4f0] font-normal">BuildWithShadik</strong> is an independent
+                creative engineering and AI systems studio operating out of Maisammaguda, Hyderabad.
               </p>
-              <p style={{ color: 'rgba(245,245,245,0.65)', lineHeight: 1.8 }}>
-                We combine modern web development, AI tools, automation and creative digital systems to create practical solutions for businesses that want to operate better and present themselves professionally online.
+              <p>
+                We believe that modern technology should simplify business operations rather than
+                overwhelm them with unnecessary corporate buzzwords. Every line of code, every
+                interaction layout, and every automation node is personally designed and built by
+                Shaik Shadik.
+              </p>
+              <p>
+                Whether you run a local clinic, high-end studio, restaurant, or modern service firm,
+                we treat your digital presence with the focus, clarity, and precision of a private workshop.
               </p>
             </div>
 
-            {/* Founder */}
-            <div
-              className="flex items-center gap-4 p-4 rounded-2xl"
-              style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.08)',
-              }}
-            >
-              <div
-                className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0"
-                style={{
-                  background: 'rgba(163,230,53,0.12)',
-                  border: '1px solid rgba(163,230,53,0.25)',
-                  color: '#a3e635',
-                }}
-                aria-hidden="true"
-              >
-                S
+            {/* Technical Verification Details */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-white/[0.08] font-mono text-xs text-[#888888]">
+              <div>
+                <span className="text-[#666666] block uppercase tracking-wider text-[10px]">FOUNDER</span>
+                <span className="text-[#e5e5e0] font-sans font-medium text-sm">Shaik Shadik</span>
               </div>
               <div>
-                <p className="font-semibold text-sm" style={{ color: '#f5f5f5' }}>
-                  Shaik Shadik
-                </p>
-                <p className="text-xs mt-0.5" style={{ color: 'rgba(245,245,245,0.4)' }}>
-                  Founder · BuildWithShadik
-                </p>
+                <span className="text-[#666666] block uppercase tracking-wider text-[10px]">LOCATION</span>
+                <span className="text-[#e5e5e0]">Hyderabad, India</span>
+              </div>
+              <div>
+                <span className="text-[#666666] block uppercase tracking-wider text-[10px]">AFFILIATION</span>
+                <span className="text-[#a3e635]">Shadi Creations</span>
               </div>
             </div>
           </div>
 
-          {/* Right: Brand card */}
-          <div className="flex justify-center lg:justify-end">
-            <div
-              className="w-full max-w-sm rounded-2xl p-8 flex flex-col items-center justify-center gap-5"
-              style={{
-                background: 'rgba(255,255,255,0.025)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                minHeight: '320px',
-              }}
-              aria-label="BuildWithShadik brand"
-            >
-              {/* Logo */}
+          {/* Right Column: 5 Cols Authentic Studio Artifact Card */}
+          <div className="lg:col-span-5 p-8 rounded-lg bg-[#0e0e0e] border border-white/10 space-y-6">
+            <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#888888]">
+                IDENTITY REGISTRATION
+              </span>
+              <span className="w-2 h-2 rounded-full bg-[#a3e635]" />
+            </div>
+
+            <div className="flex justify-center py-4">
               <img
                 src={logoImg}
-                alt="BuildWithShadik logo"
-                style={{ height: '100px', width: 'auto', objectFit: 'contain' }}
+                alt="BuildWithShadik Logo"
+                className="h-20 w-auto object-contain"
               />
+            </div>
 
-              <div className="text-center">
-                <p
-                  className="font-bold text-lg tracking-tight"
-                  style={{ color: '#f5f5f5' }}
-                >
-                  BuildWithShadik
-                </p>
-                <p
-                  className="text-xs mt-1 tracking-widest uppercase"
-                  style={{ color: '#a3e635' }}
-                >
-                  by Shadi Creations
-                </p>
+            <div className="space-y-1 text-center">
+              <h3 className="text-xl font-serif-normal text-[#f4f4f0]">
+                BuildWithShadik
+              </h3>
+              <p className="font-mono text-xs text-[#a3e635] tracking-widest uppercase">
+                A Venture by Shadi Creations
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-white/[0.06] font-mono text-xs text-[#777777] space-y-2">
+              <div className="flex justify-between">
+                <span>STUDIO BASE</span>
+                <span className="text-[#b5b5b0]">Maisammaguda, HYD</span>
               </div>
-
-              <div
-                className="w-full border-t pt-5"
-                style={{ borderColor: 'rgba(255,255,255,0.06)' }}
-              >
-                <div className="flex flex-col gap-2 text-sm text-center" style={{ color: 'rgba(245,245,245,0.4)' }}>
-                  <span>AI · Automation · Websites</span>
-                  <span>Hyderabad, Telangana</span>
-                </div>
+              <div className="flex justify-between">
+                <span>DISCIPLINES</span>
+                <span className="text-[#b5b5b0]">Web / AI / Automation</span>
+              </div>
+              <div className="flex justify-between">
+                <span>CONTACT</span>
+                <span className="text-[#b5b5b0]">+91 8309432965</span>
               </div>
             </div>
           </div>

@@ -1,160 +1,100 @@
 import React from 'react';
 
-const STEPS = [
+const PROCESS_STEPS = [
   {
-    number: '01',
+    step: '01',
     title: 'Understand',
+    focus: 'Discovery & Workflow Audit',
     description:
-      'We understand your business, customers and current digital setup before recommending anything.',
-    icon: '◎',
+      'We study your actual business operations, customer communication channels, and administrative bottlenecks before writing a line of code.'
   },
   {
-    number: '02',
+    step: '02',
     title: 'Design',
+    focus: 'Architecture & Editorial Tone',
     description:
-      'We create the right digital experience around your business goals and customer expectations.',
-    icon: '◈',
+      'We craft a clean, high-contrast visual system and wireframe frictionless conversion paths customized to how your clients inquire.'
   },
   {
-    number: '03',
+    step: '03',
     title: 'Build',
+    focus: 'Clean Engineering & API Hooks',
     description:
-      'We build, test and connect the required tools — keeping you informed throughout.',
-    icon: '◉',
+      'We write high-performance frontend code and connect intelligent WhatsApp flows, booking systems, or automated AI responders.'
   },
   {
-    number: '04',
-    title: 'Launch',
+    step: '04',
+    title: 'Deploy',
+    focus: 'Production Launch & Iteration',
     description:
-      'We help you launch and continue to improve the system as your business grows.',
-    icon: '◎',
-  },
+      'We verify domain settings, test real customer submission loops, hand over complete documentation, and provide ongoing refinement.'
+  }
 ];
 
 export default function Process() {
   return (
-    <section
-      id="process"
-      className="py-24 md:py-32"
-      style={{
-        background: '#0d0d0d',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
-        borderBottom: '1px solid rgba(255,255,255,0.05)',
-      }}
-      aria-labelledby="process-heading"
-    >
-      <div className="container-site">
+    <section id="process" className="py-24 md:py-32 border-b border-white/[0.07]">
+      <div className="studio-container">
         {/* Header */}
-        <div className="mb-16 max-w-2xl">
-          <p className="section-label mb-4">Our Process</p>
-          <h2 id="process-heading" className="section-heading mb-4">
-            Simple Process.
-            <br />
-            <span style={{ color: '#a3e635' }}>Clear Results.</span>
-          </h2>
-          <p style={{ color: 'rgba(245,245,245,0.55)', lineHeight: 1.7 }}>
-            No unnecessary complexity. We keep the process transparent and collaborative from start to finish.
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-6 border-b border-white/[0.08]">
+          <div>
+            <span className="micro-label mb-3">
+              <span className="micro-label-dot" />
+              METHODOLOGY / 04
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-serif-normal text-[#f4f4f0] tracking-tight mt-2">
+              Simple Process.
+              <br />
+              <span className="font-serif-italic text-[#888888] font-light">
+                Measurable Outcomes.
+              </span>
+            </h2>
+          </div>
+          <p className="text-sm sm:text-base text-[#888888] max-w-sm font-light">
+            No endless meetings or opaque technical jargon. Transparent, disciplined delivery from start to finish.
           </p>
         </div>
 
-        {/* Desktop: horizontal timeline */}
-        <div className="hidden md:block">
-          <div className="relative">
-            {/* Timeline line */}
-            <div
-              className="absolute top-8 left-0 right-0 h-px"
-              style={{
-                background: 'linear-gradient(90deg, transparent, rgba(163,230,53,0.3) 20%, rgba(163,230,53,0.3) 80%, transparent)',
-              }}
-              aria-hidden="true"
-            />
+        {/* Desktop: Horizontal Continuous Timeline with thin connecting line */}
+        <div className="hidden lg:grid grid-cols-4 gap-8 relative pt-6">
+          {/* Subtle connecting line */}
+          <div className="absolute top-[38px] left-0 right-0 h-px bg-white/[0.12] -z-0" />
 
-            <div className="grid grid-cols-4 gap-8">
-              {STEPS.map((step, i) => (
-                <div key={step.number} className="flex flex-col">
-                  {/* Dot */}
-                  <div className="relative flex justify-start mb-8">
-                    <div
-                      className="w-4 h-4 rounded-full"
-                      style={{
-                        background: '#a3e635',
-                        boxShadow: '0 0 12px rgba(163,230,53,0.5)',
-                      }}
-                      aria-hidden="true"
-                    />
-                  </div>
+          {PROCESS_STEPS.map((item, idx) => (
+            <div key={item.step} className="relative z-10 space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="w-6 h-6 rounded-full bg-[#080808] border border-white/30 flex items-center justify-center font-mono text-[11px] text-[#a3e635]">
+                  {item.step}
+                </span>
+                <span className="font-mono text-xs text-[#888888] uppercase tracking-wider">
+                  PHASE 0{idx + 1}
+                </span>
+              </div>
 
-                  {/* Content */}
-                  <div>
-                    <span
-                      className="text-xs font-mono font-bold mb-3 block"
-                      style={{ color: 'rgba(163,230,53,0.5)' }}
-                    >
-                      {step.number}
-                    </span>
-                    <h3
-                      className="text-xl font-semibold mb-3"
-                      style={{ fontFamily: 'Playfair Display, Georgia, serif', color: '#f5f5f5' }}
-                    >
-                      {step.title}
-                    </h3>
-                    <p
-                      className="text-sm leading-relaxed"
-                      style={{ color: 'rgba(245,245,245,0.5)' }}
-                    >
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+              <h3 className="text-2xl font-serif-normal text-[#f4f4f0] pt-2">
+                {item.title}
+              </h3>
+
+              <div className="text-xs font-mono text-[#a3e635] uppercase tracking-wide">
+                {item.focus}
+              </div>
+
+              <p className="text-sm text-[#999999] leading-relaxed font-light">
+                {item.description}
+              </p>
             </div>
-          </div>
+          ))}
         </div>
 
-        {/* Mobile: vertical timeline */}
-        <div className="md:hidden flex flex-col">
-          {STEPS.map((step, i) => (
-            <div key={step.number} className="flex gap-5">
-              {/* Left: line + dot */}
-              <div className="flex flex-col items-center">
-                <div
-                  className="w-4 h-4 rounded-full flex-shrink-0"
-                  style={{
-                    background: '#a3e635',
-                    boxShadow: '0 0 10px rgba(163,230,53,0.4)',
-                  }}
-                  aria-hidden="true"
-                />
-                {i < STEPS.length - 1 && (
-                  <div
-                    className="w-px flex-1 mt-2"
-                    style={{ background: 'rgba(163,230,53,0.2)', minHeight: '60px' }}
-                    aria-hidden="true"
-                  />
-                )}
-              </div>
-
-              {/* Content */}
-              <div className="pb-10">
-                <span
-                  className="text-xs font-mono font-bold mb-1 block"
-                  style={{ color: 'rgba(163,230,53,0.5)' }}
-                >
-                  {step.number}
-                </span>
-                <h3
-                  className="text-lg font-semibold mb-2"
-                  style={{ fontFamily: 'Playfair Display, Georgia, serif', color: '#f5f5f5' }}
-                >
-                  {step.title}
-                </h3>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: 'rgba(245,245,245,0.5)' }}
-                >
-                  {step.description}
-                </p>
-              </div>
+        {/* Mobile / Tablet: Clean Vertical Timeline */}
+        <div className="lg:hidden space-y-10 pl-4 border-l border-white/[0.12]">
+          {PROCESS_STEPS.map((item) => (
+            <div key={item.step} className="relative pl-6 space-y-2">
+              <span className="absolute -left-[23px] top-1 w-3.5 h-3.5 rounded-full bg-[#080808] border border-[#a3e635]" />
+              <div className="font-mono text-xs text-[#888888]">PHASE {item.step}</div>
+              <h3 className="text-xl font-serif-normal text-[#f4f4f0]">{item.title}</h3>
+              <div className="text-xs font-mono text-[#a3e635] uppercase">{item.focus}</div>
+              <p className="text-sm text-[#999999] font-light leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>

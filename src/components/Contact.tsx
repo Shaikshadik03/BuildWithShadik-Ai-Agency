@@ -1,420 +1,183 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle, Phone, Mail, MapPin } from 'lucide-react';
-import { CONTACT } from '../services/whatsappService';
-
-const SERVICE_OPTIONS = [
-  'Website',
-  'AI Photos',
-  'AI Chatbot',
-  'WhatsApp Automation',
-  'AI Voice Agent',
-  'Appointment Booking',
-  'Maps / Local Presence',
-  'Something Else',
-];
-
-interface FormData {
-  name: string;
-  businessName: string;
-  email: string;
-  phone: string;
-  service: string;
-  message: string;
-}
-
-interface FormErrors {
-  name?: string;
-  email?: string;
-  message?: string;
-}
-
-const INITIAL_FORM: FormData = {
-  name: '',
-  businessName: '',
-  email: '',
-  phone: '',
-  service: '',
-  message: '',
-};
+import { ArrowUpRight } from 'lucide-react';
+import { getWhatsAppUrl } from '../services/whatsappService';
 
 export default function Contact() {
-  const [form, setForm] = useState<FormData>(INITIAL_FORM);
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState('');
+  const [business, setBusiness] = useState('');
+  const [service, setService] = useState('Website');
+  const [contactInfo, setContactInfo] = useState('');
+  const [notes, setNotes] = useState('');
 
-  const validate = (): boolean => {
-    const errs: FormErrors = {};
-    if (!form.name.trim()) errs.name = 'Name is required.';
-    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      errs.email = 'A valid email is required.';
-    }
-    if (!form.message.trim()) errs.message = 'Please tell us what you need.';
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleLaunchWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
-    setLoading(true);
-    // Demo: no real backend. Simulate a delay.
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSubmitted(true);
-    setForm(INITIAL_FORM);
-  };
+    const message = `Hi Shaik, I'm reaching out from BuildWithShadik website.
+Name: ${name || 'N/A'}
+Business: ${business || 'N/A'}
+Service Needed: ${service}
+Contact Details: ${contactInfo || 'N/A'}
+Project Notes: ${notes || 'N/A'}`;
 
-  const inputStyle: React.CSSProperties = {
-    width: '100%',
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.1)',
-    borderRadius: '12px',
-    padding: '0.75rem 1rem',
-    color: '#f5f5f5',
-    fontSize: '0.9rem',
-    outline: 'none',
-    transition: 'border-color 0.2s ease',
-  };
-
-  const labelStyle: React.CSSProperties = {
-    display: 'block',
-    fontSize: '0.8rem',
-    fontWeight: 600,
-    marginBottom: '0.4rem',
-    color: 'rgba(245,245,245,0.55)',
-    letterSpacing: '0.04em',
+    window.open(getWhatsAppUrl(message), '_blank');
   };
 
   return (
-    <section
-      id="contact"
-      className="py-24 md:py-32"
-      style={{
-        background: '#0d0d0d',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
-      }}
-      aria-labelledby="contact-heading"
-    >
-      <div className="container-site">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left: Info */}
-          <div>
-            <p className="section-label mb-4">Contact</p>
-            <h2 id="contact-heading" className="section-heading mb-5">
-              Let's Build
-              <br />
-              <span style={{ color: '#a3e635' }}>Something Useful.</span>
-            </h2>
-            <p className="mb-10" style={{ color: 'rgba(245,245,245,0.6)', lineHeight: 1.7 }}>
-              Have an idea, business problem or project in mind? Let's discuss what can be built.
-            </p>
-
-            {/* Contact details */}
-            <div className="flex flex-col gap-5">
-              <div className="flex items-center gap-4">
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'rgba(163,230,53,0.08)', border: '1px solid rgba(163,230,53,0.15)' }}
-                  aria-hidden="true"
-                >
-                  <Phone size={16} style={{ color: '#a3e635' }} />
-                </div>
-                <div>
-                  <p className="text-xs mb-0.5" style={{ color: 'rgba(245,245,245,0.35)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                    Phone / WhatsApp
-                  </p>
-                  <a
-                    href={`tel:${CONTACT.phoneRaw}`}
-                    className="text-sm font-medium transition-colors"
-                    style={{ color: '#f5f5f5' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#a3e635')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#f5f5f5')}
-                  >
-                    {CONTACT.phone}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'rgba(163,230,53,0.08)', border: '1px solid rgba(163,230,53,0.15)' }}
-                  aria-hidden="true"
-                >
-                  <Mail size={16} style={{ color: '#a3e635' }} />
-                </div>
-                <div>
-                  <p className="text-xs mb-0.5" style={{ color: 'rgba(245,245,245,0.35)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                    Email
-                  </p>
-                  <a
-                    href={`mailto:${CONTACT.email}`}
-                    className="text-sm font-medium transition-colors"
-                    style={{ color: '#f5f5f5' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#a3e635')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#f5f5f5')}
-                  >
-                    {CONTACT.email}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'rgba(163,230,53,0.08)', border: '1px solid rgba(163,230,53,0.15)' }}
-                  aria-hidden="true"
-                >
-                  <MapPin size={16} style={{ color: '#a3e635' }} />
-                </div>
-                <div>
-                  <p className="text-xs mb-0.5" style={{ color: 'rgba(245,245,245,0.35)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                    Location
-                  </p>
-                  <p className="text-sm font-medium" style={{ color: '#f5f5f5' }}>
-                    {CONTACT.location}
-                  </p>
-                </div>
-              </div>
+    <section id="contact" className="py-24 md:py-32 border-b border-white/[0.07]">
+      <div className="studio-container">
+        {/* Asymmetric Split: 5 / 7 Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+          {/* Left Column: 5 Cols Direct Communication */}
+          <div className="lg:col-span-5 space-y-8">
+            <div>
+              <span className="micro-label mb-3">
+                <span className="micro-label-dot" />
+                INITIATE PROJECT / 09
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-serif-normal text-[#f4f4f0] tracking-tight mt-2">
+                Have a project in mind?
+                <br />
+                <span className="font-serif-italic text-[#a3e635] font-light">
+                  Let's build something useful.
+                </span>
+              </h2>
             </div>
 
-            {/* Founder */}
-            <div
-              className="mt-10 p-4 rounded-2xl"
-              style={{
-                background: 'rgba(255,255,255,0.025)',
-                border: '1px solid rgba(255,255,255,0.07)',
-              }}
-            >
-              <p className="text-sm font-semibold" style={{ color: '#f5f5f5' }}>
-                Shaik Shadik
-              </p>
-              <p className="text-xs mt-0.5" style={{ color: 'rgba(245,245,245,0.4)' }}>
-                Founder · BuildWithShadik · by Shadi Creations
-              </p>
+            <p className="text-sm sm:text-base text-[#999999] leading-relaxed font-light">
+              We respond promptly to every serious inquiry. Direct conversation with the
+              founder — no junior middlemen, no high-pressure sales scripts.
+            </p>
+
+            <div className="pt-6 border-t border-white/[0.08] space-y-4 font-mono text-xs">
+              <div className="flex flex-col">
+                <span className="text-[#666666] uppercase text-[10px]">DIRECT WHATSAPP / CALL</span>
+                <a
+                  href={getWhatsAppUrl("Hi Shaik, I'd like to talk about a project.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#f4f4f0] hover:text-[#a3e635] transition-colors text-sm font-sans mt-0.5"
+                >
+                  +91 8309432965
+                </a>
+              </div>
+
+              <div className="flex flex-col">
+                <span className="text-[#666666] uppercase text-[10px]">EMAIL INQUIRY</span>
+                <a
+                  href="mailto:shaikshadik003@gmail.com"
+                  className="text-[#f4f4f0] hover:text-[#a3e635] transition-colors text-sm font-sans mt-0.5"
+                >
+                  shaikshadik003@gmail.com
+                </a>
+              </div>
+
+              <div className="flex flex-col">
+                <span className="text-[#666666] uppercase text-[10px]">BASE LOCATION</span>
+                <span className="text-[#999999] text-sm font-sans mt-0.5">
+                  Maisammaguda, Hyderabad, Telangana, India
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* Right: Form */}
-          <div>
-            {submitted ? (
-              <div
-                className="h-full flex flex-col items-center justify-center gap-5 rounded-2xl p-10"
-                style={{
-                  background: 'rgba(163,230,53,0.04)',
-                  border: '1px solid rgba(163,230,53,0.2)',
-                  minHeight: '400px',
-                }}
-                role="status"
-                aria-live="polite"
-              >
-                <CheckCircle size={48} style={{ color: '#a3e635' }} aria-hidden="true" />
-                <div className="text-center">
-                  <h3 className="text-xl font-semibold mb-2" style={{ color: '#f5f5f5' }}>
-                    Enquiry Received
-                  </h3>
-                  <p className="text-sm" style={{ color: 'rgba(245,245,245,0.55)', lineHeight: 1.7 }}>
-                    Thanks — your enquiry has been received.
-                    <br />
-                    We'll be in touch soon.
-                  </p>
-                  <p className="text-xs mt-4" style={{ color: 'rgba(245,245,245,0.3)' }}>
-                    Note: This is a demo submission. No email was sent yet — backend integration coming soon.
-                  </p>
-                </div>
-                <button
-                  className="btn-secondary text-sm"
-                  onClick={() => setSubmitted(false)}
-                >
-                  Send Another
-                </button>
-              </div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                noValidate
-                className="flex flex-col gap-5"
-                aria-label="Contact enquiry form"
-              >
-                {/* Name + Business */}
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="contact-name" style={labelStyle}>
-                      Name *
-                    </label>
-                    <input
-                      id="contact-name"
-                      type="text"
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      placeholder="Your name"
-                      style={{
-                        ...inputStyle,
-                        borderColor: errors.name ? 'rgba(255,80,80,0.5)' : 'rgba(255,255,255,0.1)',
-                      }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = 'rgba(163,230,53,0.4)')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = errors.name ? 'rgba(255,80,80,0.5)' : 'rgba(255,255,255,0.1)')}
-                      autoComplete="name"
-                      aria-describedby={errors.name ? 'contact-name-error' : undefined}
-                      aria-required="true"
-                    />
-                    {errors.name && (
-                      <p id="contact-name-error" role="alert" className="text-xs mt-1" style={{ color: 'rgb(255,100,100)' }}>
-                        {errors.name}
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="contact-business" style={labelStyle}>
-                      Business Name
-                    </label>
-                    <input
-                      id="contact-business"
-                      type="text"
-                      value={form.businessName}
-                      onChange={(e) => setForm({ ...form, businessName: e.target.value })}
-                      placeholder="Your business (optional)"
-                      style={inputStyle}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = 'rgba(163,230,53,0.4)')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)')}
-                      autoComplete="organization"
-                    />
-                  </div>
-                </div>
+          {/* Right Column: 7 Cols Clean Studio Project Brief Form */}
+          <div className="lg:col-span-7 p-8 sm:p-10 rounded-lg bg-[#0e0e0e] border border-white/10">
+            <h3 className="text-xl font-serif-normal text-[#f4f4f0] mb-2">
+              Start A Conversation
+            </h3>
+            <p className="text-xs font-mono text-[#888888] mb-8">
+              Fill in your project brief to open an immediate WhatsApp conversation with Shaik Shadik.
+            </p>
 
-                {/* Email + Phone */}
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="contact-email" style={labelStyle}>
-                      Email *
-                    </label>
-                    <input
-                      id="contact-email"
-                      type="email"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      placeholder="your@email.com"
-                      style={{
-                        ...inputStyle,
-                        borderColor: errors.email ? 'rgba(255,80,80,0.5)' : 'rgba(255,255,255,0.1)',
-                      }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = 'rgba(163,230,53,0.4)')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = errors.email ? 'rgba(255,80,80,0.5)' : 'rgba(255,255,255,0.1)')}
-                      autoComplete="email"
-                      aria-describedby={errors.email ? 'contact-email-error' : undefined}
-                      aria-required="true"
-                    />
-                    {errors.email && (
-                      <p id="contact-email-error" role="alert" className="text-xs mt-1" style={{ color: 'rgb(255,100,100)' }}>
-                        {errors.email}
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="contact-phone" style={labelStyle}>
-                      Phone
-                    </label>
-                    <input
-                      id="contact-phone"
-                      type="tel"
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      placeholder="+91 ... (optional)"
-                      style={inputStyle}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = 'rgba(163,230,53,0.4)')}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)')}
-                      autoComplete="tel"
-                    />
-                  </div>
-                </div>
-
-                {/* Service dropdown */}
+            <form onSubmit={handleLaunchWhatsApp} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="contact-service" style={labelStyle}>
-                    What do you need?
+                  <label className="block text-[11px] font-mono uppercase text-[#888888] mb-2">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="e.g. Rahul Sharma"
+                    className="w-full px-4 py-3 rounded bg-[#161616] border border-white/10 text-sm text-[#f4f4f0] placeholder-[#555555] focus:outline-none focus:border-[#a3e635] transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-mono uppercase text-[#888888] mb-2">
+                    Business / Company
+                  </label>
+                  <input
+                    type="text"
+                    value={business}
+                    onChange={(e) => setBusiness(e.target.value)}
+                    placeholder="e.g. Apex Studio"
+                    className="w-full px-4 py-3 rounded bg-[#161616] border border-white/10 text-sm text-[#f4f4f0] placeholder-[#555555] focus:outline-none focus:border-[#a3e635] transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-[11px] font-mono uppercase text-[#888888] mb-2">
+                    Primary Service Needed
                   </label>
                   <select
-                    id="contact-service"
-                    value={form.service}
-                    onChange={(e) => setForm({ ...form, service: e.target.value })}
-                    style={{
-                      ...inputStyle,
-                      appearance: 'none',
-                      cursor: 'pointer',
-                    }}
-                    onFocus={(e) => (e.currentTarget.style.borderColor = 'rgba(163,230,53,0.4)')}
-                    onBlur={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)')}
+                    value={service}
+                    onChange={(e) => setService(e.target.value)}
+                    className="w-full px-4 py-3 rounded bg-[#161616] border border-white/10 text-sm text-[#f4f4f0] focus:outline-none focus:border-[#a3e635] transition-colors"
                   >
-                    <option value="" style={{ background: '#1a1a1a' }}>
-                      Select a service...
-                    </option>
-                    {SERVICE_OPTIONS.map((opt) => (
-                      <option key={opt} value={opt} style={{ background: '#1a1a1a' }}>
-                        {opt}
-                      </option>
-                    ))}
+                    <option value="Business Website">Business Website</option>
+                    <option value="AI Chatbot System">AI Chatbot System</option>
+                    <option value="WhatsApp & Inbox Automation">WhatsApp & Inbox Automation</option>
+                    <option value="AI Voice Agent">AI Voice Agent</option>
+                    <option value="Appointment Booking System">Appointment Booking System</option>
+                    <option value="AI-Generated Visuals">AI-Generated Visuals</option>
+                    <option value="Google Maps & Local SEO">Google Maps & Local SEO</option>
+                    <option value="Full Digital Infrastructure">Full Digital Infrastructure</option>
                   </select>
                 </div>
-
-                {/* Message */}
                 <div>
-                  <label htmlFor="contact-message" style={labelStyle}>
-                    Message *
+                  <label className="block text-[11px] font-mono uppercase text-[#888888] mb-2">
+                    Phone / WhatsApp or Email
                   </label>
-                  <textarea
-                    id="contact-message"
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    placeholder="Tell us about your business and what you're looking to build..."
-                    rows={4}
-                    style={{
-                      ...inputStyle,
-                      resize: 'vertical',
-                      minHeight: '100px',
-                      borderColor: errors.message ? 'rgba(255,80,80,0.5)' : 'rgba(255,255,255,0.1)',
-                    }}
-                    onFocus={(e) => (e.currentTarget.style.borderColor = 'rgba(163,230,53,0.4)')}
-                    onBlur={(e) => (e.currentTarget.style.borderColor = errors.message ? 'rgba(255,80,80,0.5)' : 'rgba(255,255,255,0.1)')}
-                    aria-describedby={errors.message ? 'contact-message-error' : undefined}
-                    aria-required="true"
+                  <input
+                    type="text"
+                    required
+                    value={contactInfo}
+                    onChange={(e) => setContactInfo(e.target.value)}
+                    placeholder="+91 or email"
+                    className="w-full px-4 py-3 rounded bg-[#161616] border border-white/10 text-sm text-[#f4f4f0] placeholder-[#555555] focus:outline-none focus:border-[#a3e635] transition-colors"
                   />
-                  {errors.message && (
-                    <p id="contact-message-error" role="alert" className="text-xs mt-1" style={{ color: 'rgb(255,100,100)' }}>
-                      {errors.message}
-                    </p>
-                  )}
                 </div>
+              </div>
 
-                {/* Submit */}
+              <div>
+                <label className="block text-[11px] font-mono uppercase text-[#888888] mb-2">
+                  Tell us briefly about what you want to achieve
+                </label>
+                <textarea
+                  rows={4}
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  placeholder="Share any details about your current setup or goals..."
+                  className="w-full px-4 py-3 rounded bg-[#161616] border border-white/10 text-sm text-[#f4f4f0] placeholder-[#555555] focus:outline-none focus:border-[#a3e635] transition-colors"
+                />
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                <span className="text-[11px] font-mono text-[#666666]">
+                  Opens your WhatsApp directly with prefilled spec.
+                </span>
                 <button
                   type="submit"
-                  className="btn-primary justify-center"
-                  disabled={loading}
-                  aria-busy={loading}
+                  className="btn-studio-primary w-full sm:w-auto"
                 >
-                  {loading ? (
-                    <>
-                      <span
-                        className="w-4 h-4 border-2 border-current border-t-transparent rounded-full"
-                        style={{ animation: 'spin 0.8s linear infinite', display: 'inline-block' }}
-                        aria-hidden="true"
-                      />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      Send Enquiry
-                      <Send size={15} />
-                    </>
-                  )}
+                  Send Project Brief
+                  <ArrowUpRight size={15} />
                 </button>
-
-                <p className="text-xs text-center" style={{ color: 'rgba(245,245,245,0.25)' }}>
-                  Demo mode — form data is not sent to a server yet.
-                </p>
-              </form>
-            )}
+              </div>
+            </form>
           </div>
         </div>
       </div>

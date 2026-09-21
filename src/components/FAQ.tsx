@@ -1,106 +1,85 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { faqItems } from '../data/faq';
 
-function FAQItem({ item, isOpen, onToggle }: {
-  item: { id: string; question: string; answer: string };
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
-  return (
-    <div
-      className="rounded-2xl overflow-hidden transition-all duration-200"
-      style={{
-        background: isOpen ? 'rgba(163,230,53,0.04)' : 'rgba(255,255,255,0.025)',
-        border: `1px solid ${isOpen ? 'rgba(163,230,53,0.2)' : 'rgba(255,255,255,0.07)'}`,
-      }}
-    >
-      <button
-        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left transition-colors"
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        aria-controls={`faq-answer-${item.id}`}
-        id={`faq-question-${item.id}`}
-      >
-        <span
-          className="font-medium text-sm md:text-base leading-snug"
-          style={{ color: isOpen ? '#f5f5f5' : 'rgba(245,245,245,0.8)' }}
-        >
-          {item.question}
-        </span>
-        <ChevronDown
-          size={18}
-          className="flex-shrink-0 transition-transform duration-300"
-          style={{
-            color: isOpen ? '#a3e635' : 'rgba(245,245,245,0.4)',
-            transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-          }}
-          aria-hidden="true"
-        />
-      </button>
-
-      <div
-        id={`faq-answer-${item.id}`}
-        role="region"
-        aria-labelledby={`faq-question-${item.id}`}
-        className="overflow-hidden transition-all duration-300"
-        style={{
-          maxHeight: isOpen ? '500px' : '0px',
-          opacity: isOpen ? 1 : 0,
-        }}
-      >
-        <div
-          className="px-6 pb-5 text-sm leading-relaxed border-t"
-          style={{
-            color: 'rgba(245,245,245,0.6)',
-            borderColor: 'rgba(255,255,255,0.05)',
-            paddingTop: '1rem',
-          }}
-        >
-          {item.answer}
-        </div>
-      </div>
-    </div>
-  );
-}
+const FAQS = [
+  {
+    q: 'What kind of businesses do you typically partner with?',
+    a: 'We work primarily with small, medium, and local service enterprises — including clinics, restaurants, salons, automotive studios, and modern consultancy firms who need a reliable, high-converting digital storefront and automated client communication.'
+  },
+  {
+    q: 'Can you build a custom website with WhatsApp integration?',
+    a: 'Yes. Every website we build is coded specifically around your customer path. We integrate one-tap WhatsApp inquiries, quote configurators, and lead capture forms that forward notifications directly to your phone in real-time.'
+  },
+  {
+    q: 'How does your AI chatbot service work?',
+    a: 'We deploy virtual assistants trained on your exact service menu, pricing structure, and FAQs. The bot answers questions around the clock, captures lead contacts, and seamlessly routes hot prospects to WhatsApp.'
+  },
+  {
+    q: 'What can you automate across WhatsApp and our inbox?',
+    a: 'We automate repetitive tasks like sending immediate booking confirmations, scheduling appointment reminders to reduce customer no-shows, and synchronizing new website leads directly into Google Sheets or your CRM via n8n and Make.'
+  },
+  {
+    q: 'Can you create studio-grade AI visuals for our brand?',
+    a: 'Yes. We generate high-fidelity product imagery, social media campaign visuals, and promotional graphics without the overhead of renting a commercial photography studio.'
+  },
+  {
+    q: 'How do we get started on a new project?',
+    a: 'Simply send a brief message outlining what you need via WhatsApp (+91 8309432965) or use the inquiry form below. Shaik Shadik will personally review your requirements and provide a clear, transparent scope proposal.'
+  }
+];
 
 export default function FAQ() {
-  const [openId, setOpenId] = useState<string | null>(faqItems[0]?.id ?? null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section
-      id="faq"
-      className="py-24 md:py-32"
-      style={{ background: '#0a0a0a' }}
-      aria-labelledby="faq-heading"
-    >
-      <div className="container-site">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Header */}
+    <section id="faq" className="py-24 md:py-32 border-b border-white/[0.07]">
+      <div className="studio-container">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-6 border-b border-white/[0.08]">
           <div>
-            <p className="section-label mb-4">FAQ</p>
-            <h2 id="faq-heading" className="section-heading mb-5">
-              Common
-              <br />
-              <span style={{ color: '#a3e635' }}>Questions.</span>
+            <span className="micro-label mb-3">
+              <span className="micro-label-dot" />
+              CLARIFICATIONS / 08
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-serif-normal text-[#f4f4f0] tracking-tight mt-2">
+              Frequently Discussed.
             </h2>
-            <p style={{ color: 'rgba(245,245,245,0.55)', lineHeight: 1.7, maxWidth: '380px' }}>
-              Still have questions? Reach out on WhatsApp or use the contact form below.
-            </p>
           </div>
+          <p className="text-sm sm:text-base text-[#888888] max-w-sm font-light">
+            Plain answers to common questions about our studio, delivery timelines, and technology stack.
+          </p>
+        </div>
 
-          {/* Accordion */}
-          <div className="flex flex-col gap-3" role="list">
-            {faqItems.map((item) => (
-              <div key={item.id} role="listitem">
-                <FAQItem
-                  item={item}
-                  isOpen={openId === item.id}
-                  onToggle={() => setOpenId(openId === item.id ? null : item.id)}
-                />
+        {/* Minimalist Editorial Accordion (Hairline rules, zero bulky cards) */}
+        <div className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
+          {FAQS.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div key={faq.q} className="py-6">
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="w-full flex items-center justify-between text-left gap-6 group"
+                  aria-expanded={isOpen}
+                >
+                  <span className="text-lg sm:text-2xl font-serif-normal text-[#e5e5e0] group-hover:text-[#f4f4f0] transition-colors">
+                    {faq.q}
+                  </span>
+                  <span className="font-mono text-xs text-[#888888] group-hover:text-[#a3e635] flex items-center gap-1 transition-colors flex-shrink-0">
+                    <ChevronDown
+                      size={18}
+                      className={`transition-transform duration-300 ${isOpen ? 'rotate-180 text-[#a3e635]' : ''}`}
+                    />
+                  </span>
+                </button>
+
+                {isOpen && (
+                  <div className="pt-4 pr-12 text-sm sm:text-base text-[#999999] leading-relaxed font-light">
+                    {faq.a}
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>
