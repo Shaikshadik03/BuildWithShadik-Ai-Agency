@@ -12,6 +12,34 @@ function genId() {
   return `msg-${++idCounter}-${Date.now()}`;
 }
 
+function FormattedMessage({ text }: { text: string }) {
+  const lines = text.split('\n');
+  return (
+    <div className="space-y-1">
+      {lines.map((line, idx) => {
+        if (!line.trim()) {
+          return <div key={idx} className="h-1.5" />;
+        }
+        const parts = line.split(/(\*\*.*?\*\*)/g);
+        return (
+          <div key={idx} className="leading-relaxed">
+            {parts.map((part, pIdx) => {
+              if (part.startsWith('**') && part.endsWith('**')) {
+                return (
+                  <strong key={pIdx} className="font-semibold text-white">
+                    {part.slice(2, -2)}
+                  </strong>
+                );
+              }
+              return part;
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([INITIAL_MESSAGE]);
@@ -46,12 +74,22 @@ export default function Chatbot() {
     setIsTyping(true);
 
     // Handle special quick-reply actions
-    if (text === 'Open WhatsApp') {
+    if (text.toLowerCase().includes('whatsapp')) {
       openWhatsApp();
       setIsTyping(false);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: genId(),
+          role: 'assistant',
+          content: "Opening WhatsApp to connect directly with **Shaik Shadik** (+91 8309432965). Feel free to send your project details or questions there!",
+          timestamp: new Date(),
+          quickReplies: ['Our Services', 'Website Packages', 'Chatbot Demo'],
+        },
+      ]);
       return;
     }
-    if (text === 'Contact Form') {
+    if (text === 'Contact Form' || text === 'Book a Consultation' || text === 'Book a Call') {
       setIsTyping(false);
       document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
       setIsOpen(false);
@@ -179,7 +217,7 @@ export default function Chatbot() {
                 </div>
                 <p style={{ color: 'rgba(245,245,245,0.4)', fontSize: '0.7rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#a3e635', display: 'inline-block' }} />
-                  Powered by Groq · Llama 3.3
+                  Powered by Groq AI · Live
                 </p>
               </div>
             </div>
@@ -240,10 +278,9 @@ export default function Chatbot() {
                       color: 'rgba(245,245,245,0.9)',
                       fontSize: '0.825rem',
                       lineHeight: 1.6,
-                      whiteSpace: 'pre-line',
                     }}
                   >
-                    {msg.content}
+                    <FormattedMessage text={msg.content} />
                   </div>
                 </div>
 
